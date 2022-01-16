@@ -1,9 +1,13 @@
 name: Build and deploy app
 
-on:
-  push
-workflow_dispatch
-
+on: 
+ workflow_dispatch:
+ push:
+   branches:
+     - main
+ pull_request:
+   types: [opened, synchronize, reopened]
+ 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
 #
