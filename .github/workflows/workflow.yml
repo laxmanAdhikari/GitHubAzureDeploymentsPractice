@@ -57,8 +57,9 @@ jobs:
       - name: create db connection string
         run: |   
           $CONN_STR=(az sql db show-connection-string --client ado.net --server ${{ env.SQLSERVER_NAME }} --name ${{ env.DATABASE_NAME }} -o tsv)
-          $CONN_STR= CONN_STR.Replace("<username>", ${{ env.SQLADMIN_LOGIN }})
-          $CONN_STR = CONN_STR.Replace("****",{{ env.SQLADMIN_PASS }}
+          echo $CONN_STR
+          $CONN_STR= $CONN_STR.Replace("<username>", ${{ env.SQLADMIN_LOGIN }})
+          $CONN_STR = $CONN_STR.Replace("****",{{ env.SQLADMIN_PASS }}
           echo "::set-env name=SQL_DB_CONN_STR:: $CONN_STR"
       - name: Update Database
         run: |
