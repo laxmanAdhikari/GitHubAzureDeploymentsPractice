@@ -1,7 +1,11 @@
 name: Build and deploy app
 
-on: 
- workflow_dispatch:
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+    - 'infrastructure/**'
+    - '.github/workflows/**'
  
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
