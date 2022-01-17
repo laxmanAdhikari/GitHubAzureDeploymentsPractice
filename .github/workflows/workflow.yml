@@ -56,11 +56,10 @@ jobs:
 
       - name: create db connection string
         run: |
-          CONN_STR=$(az sql db show-connection-string --client ado.net --server ${{ env.SQLSERVER_NAME }} --name ${{ env.DATABASE_NAME }} -o tsv)
-          CONN_STR=$(echo $CONN_STR | sed "s/<username>/${{ env.SQLADMIN_LOGIN }}/g")
-          CONN_STR=$(echo $CONN_STR | sed "s/<password>/${{ env.SQLADMIN_PASS }}/g")
-          echo "SQL_DB_CONN_STR=$CONN_STR" >> $GITHUB_ENV
-          run: echo "::set-env name=SQL_DB_CONN_STR:: $CONN_STR"
+          echo CONN_STR=$(az sql db show-connection-string --client ado.net --server ${{ env.SQLSERVER_NAME }} --name ${{ env.DATABASE_NAME }} -o tsv)
+          echo CONN_STR=$(echo $CONN_STR | sed "s/<username>/${{ env.SQLADMIN_LOGIN }}/g")
+          echo CONN_STR=$(echo $CONN_STR | sed "s/<password>/${{ env.SQLADMIN_PASS }}/g")
+          echo "::set-env name=SQL_DB_CONN_STR:: $CONN_STR"
       - name: Update Database
         run: |
           dotnet tool install --global dotnet-ef
