@@ -66,7 +66,7 @@ jobs:
           dotnet tool install --global dotnet-ef
           dotnet ef database update
         env:
-          ConnectionStrings__MyDbConnection: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
+          ConnectionStrings__MyDbConnection: ${{ secrets.SQL_DB_CONN_STR  }}
       
       - name: Swap to production slot
         run: |
